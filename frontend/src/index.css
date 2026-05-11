@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 24.6 95% 53.1%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 142.1 76.2% 36.3%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 24.6 95% 53.1%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-slate-100 p-4;
+  }
+
+  /* Transition defaults */
+  .btn-transition {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  /* Status badges */
+  .badge-active {
+    @apply bg-green-100 text-green-700 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  .badge-on_hold {
+    @apply bg-yellow-100 text-yellow-700 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  .badge-completed {
+    @apply bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+  .badge-inactive {
+    @apply bg-gray-100 text-gray-600 text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+
+  /* Attendance buttons */
+  .att-btn {
+    @apply min-w-[44px] min-h-[44px] rounded-lg font-bold text-sm transition-all duration-150 flex items-center justify-center;
+  }
+  .att-btn-present {
+    @apply bg-green-500 text-white shadow-sm;
+  }
+  .att-btn-absent {
+    @apply bg-red-500 text-white shadow-sm;
+  }
+  .att-btn-half {
+    @apply bg-yellow-500 text-white shadow-sm;
+  }
+  .att-btn-leave {
+    @apply bg-blue-400 text-white shadow-sm;
+  }
+  .att-btn-unset {
+    @apply bg-slate-100 text-slate-500 hover:bg-slate-200;
+  }
+
+  /* Profit/Loss colors */
+  .profit-text {
+    @apply text-green-600 font-semibold;
+  }
+  .loss-text {
+    @apply text-red-500 font-semibold;
+  }
+}
+
+/* Page transition animation */
+.page-enter {
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skeleton loader */
+.skeleton {
+  @apply animate-pulse bg-slate-200 rounded;
+}
+
+/* Mobile safe area */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
