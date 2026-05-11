@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { Edit } from "lucide-react";
 import { sitesApi } from "../../../services/api";
 import { PageHeader } from "../../../components/common/PageHeader";
 import { StatusBadge } from "../../../components/common/StatusBadge";
 import { PageSkeleton } from "../../../components/common/LoadingSkeleton";
+import { useAuthStore } from "../../../store/authStore";
 import { OverviewTab } from "./tabs/OverviewTab";
 import { WorkItemsTab } from "./tabs/WorkItemsTab";
 import { WorkLogsTab } from "./tabs/WorkLogsTab";
@@ -27,6 +29,8 @@ export function SiteDetail() {
   const { id } = useParams<{ id: string }>();
   const siteId = parseInt(id!);
   const [activeTab, setActiveTab] = useState("overview");
+  const { user } = useAuthStore();
+  const isOwner = user?.role === "owner";
 
   const { data: site, isLoading } = useQuery<Site>({
     queryKey: ["site", siteId],
@@ -43,7 +47,20 @@ export function SiteDetail() {
         title={site.name}
         subtitle={site.location}
         backTo="/sites"
-        actions={<StatusBadge status={site.status} />}
+        actions={
+          <div className="flex items-center gap-3">
+            <StatusBadge status={site.status} />
+            {isOwner && (
+              <Link
+                to={`/sites/${site.id}/edit`}
+                className="p-2 text-slate-500 hover:text-orange-500 bg-white rounded-lg border border-slate-200 hover:border-orange-500 transition-colors"
+                title="Edit Site"
+              >
+                <Edit className="w-4 h-4" />
+              </Link>
+            )}
+          </div>
+        }
       />
 
       {/* Tab Bar */}

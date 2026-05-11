@@ -1,4 +1,4 @@
-import type { SkillType, ProjectType, ExpenseCategory, EquipmentCategory } from "../types";
+import type { SkillType, ProjectType, ExpenseCategory, EquipmentCategory, SiteStatus } from "../types";
 
 export const SKILL_TYPE_LABELS: Record<SkillType, string> = {
   unskilled_labour: "Unskilled Labour / Mazdoor",
@@ -10,6 +10,12 @@ export const SKILL_TYPE_LABELS: Record<SkillType, string> = {
   electrician: "Electrician",
   equipment_operator: "Equipment Operator",
   supervisor: "Supervisor / Mukadam",
+};
+
+export const SITE_STATUS_LABELS: Record<SiteStatus, string> = {
+  active: "Active",
+  on_hold: "On Hold",
+  completed: "Completed"
 };
 
 export const PROJECT_TYPE_LABELS: Record<ProjectType, string> = {

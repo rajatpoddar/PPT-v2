@@ -6,6 +6,7 @@ import { OwnerDashboard } from "./pages/owner/Dashboard";
 import { SitesList } from "./pages/owner/sites/SitesList";
 import { SiteDetail } from "./pages/owner/sites/SiteDetail";
 import { CreateSite } from "./pages/owner/sites/CreateSite";
+import { EditSite } from "./pages/owner/sites/EditSite";
 import { LaboursList } from "./pages/owner/labours/LaboursList";
 import { AddLabour } from "./pages/owner/labours/AddLabour";
 import { PaymentsPage } from "./pages/owner/payments/PaymentsPage";
